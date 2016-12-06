@@ -44,6 +44,12 @@ inline void assert_file_exist(std::string desc, std::string name) {
     }
 }
 
+enum NeightborType {
+    MARKED_NODE = 1,
+    UNMARKED_NODE = 2,
+    ALL_NODE = 3,
+};
+
 class Graph{
 public:
     Graph(){}
@@ -106,23 +112,23 @@ public:
             return false;
     }
 
-    std::vector<NodeID> get_in_neighbors(NodeID nid, bool only_unmark=false){
+    std::vector<NodeID> get_in_neighbors(NodeID nid, NeightborType neighbor_type=ALL_NODE){
         std::vector<NodeID> vecNodes;
         if(!check_vertex(nid)) return vecNodes;
         std::map<NodeID, Weight>::const_iterator iter = m_reverse_edges[nid-1].begin();
         for(; iter!=m_reverse_edges[nid-1].end();iter++){
-            if( (only_unmark && !check_mark(iter->first+1)) ||  !only_unmark)
+            if( (neighbor_type==UNMARKED_NODE && !check_mark(iter->first+1)) || (neighbor_type==MARKED_NODE && check_mark(iter->first+1)) || neighbor_type==ALL_NODE )
                 vecNodes.push_back(iter->first+1);
         }
         return vecNodes;
     }
 
-    std::vector<NodeID> get_out_neighbors(NodeID nid, bool only_unmark=false){
+    std::vector<NodeID> get_out_neighbors(NodeID nid, NeightborType neighbor_type=ALL_NODE){
         std::vector<NodeID> vecNodes;
         if(!check_vertex(nid)) return vecNodes;
         std::map<NodeID, Weight>::const_iterator iter = m_edges[nid-1].begin();
         for(; iter!=m_edges[nid-1].end();iter++){
-            if( (only_unmark && !check_mark(iter->first+1)) ||  !only_unmark)
+            if( (neighbor_type==UNMARKED_NODE && !check_mark(iter->first+1)) || (neighbor_type==MARKED_NODE && check_mark(iter->first+1)) || neighbor_type==ALL_NODE )
                 vecNodes.push_back(iter->first+1);
         }
 
