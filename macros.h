@@ -87,41 +87,55 @@
     #define LOG(format, ...) do{ } while(0)
 #endif
 
-#define LOG_LEVEL_DEBUG
-#define LOG_LEVEL_TRACE
-#define LOG_LEVEL_ERROR
+// #define LOG_LEVEL_DEBUG
+// #define LOG_LEVEL_TRACE
+// #define LOG_LEVEL_ERROR
 
-#ifdef LOG_LEVEL_DEBUG
-    #define DBG_LOG(format, ...) LOG("<DEBUG>:" format, __VA_ARGS__)
-#else
-    #define DBG_LOG(format, ...) do{ } while(0)
-#endif
+// #ifdef LOG_LEVEL_DEBUG
+//     #define DBG_LOG(format, ...) LOG("<DEBUG>:" format, __VA_ARGS__)
+// #else
+//     #define DBG_LOG(format, ...) do{ } while(0)
+// #endif
 
-#ifdef LOG_LEVEL_TRACE
-    #define TRACE_LOG(format, ...) LOG("<TRACE>:" format, __VA_ARGS__)
-#else
-    #define TRACE_LOG(format, ...) do{ } while(0)
-#endif
+// #ifdef LOG_LEVEL_TRACE
+//     #define TRACE_LOG(format, ...) LOG("<TRACE>:" format, __VA_ARGS__)
+// #else
+//     #define TRACE_LOG(format, ...) do{ } while(0)
+// #endif
 
-#ifdef LOG_LEVEL_ERROR
-    #define ERR_LOG(format, ...) LOG("<ERROR>:" format, __VA_ARGS__)
-#else
-    #define ERR_LOG(format, ...) do{ } while(0)
-#endif
+// #ifdef LOG_LEVEL_ERROR
+//     #define ERR_LOG(format, ...) LOG("<ERROR>:" format, __VA_ARGS__)
+// #else
+//     #define ERR_LOG(format, ...) do{ } while(0)
+// #endif
 
+#define LOG_LEVEL_TRACE 1
+#define LOG_LEVEL_DEBUG 2
+#define LOG_LEVEL_ERROR 3
 
+#define TRACE_LOG(level, format, ...) \
+    if(level<=LOG_LEVEL_TRACE) LOG("<TRACE>:" format, __VA_ARGS__); \
+    else do{ } while(0)
+
+#define DBG_LOG(level, format, ...) \
+    if(level<=LOG_LEVEL_DEBUG) LOG("<DEBUG>:" format, __VA_ARGS__); \
+    else do{ } while(0)
+
+#define ERR_LOG(level, format, ...) \
+    if(level<=LOG_LEVEL_ERROR) LOG("<ERROR>:" format, __VA_ARGS__); \
+    else do{ } while(0)
 
 /*------------------type definition--------------------*/
 //redefine some types, in case of the differences of bytes 
 //that the type takes on different platforms or compilers
-typedef   unsigned char       boolean;      /* Boolean value type. */ 
-typedef   unsigned long long  uint64;       /* Unsigned 64 bit value */ 
-typedef   unsigned long int   uint32;       /* Unsigned 32 bit value */ 
-typedef   unsigned short      uint16;       /* Unsigned 16 bit value */ 
-typedef   unsigned char       uint8;        /* Unsigned 8   bit value */
-typedef   signed long long    int64         /* Signed 64 bit value */ 
-typedef   signed long int     int32;        /* Signed 32 bit value */ 
-typedef   signed short        int16;        /* Signed 16 bit value */ 
-typedef   signed char         int8;         /* Signed 8   bit value */ 
+// typedef   unsigned char       boolean;      /* Boolean value type. */ 
+// typedef   unsigned long long  uint64;       /* Unsigned 64 bit value */ 
+// typedef   unsigned long int   uint32;       /* Unsigned 32 bit value */ 
+// typedef   unsigned short      uint16;       /* Unsigned 16 bit value */ 
+// typedef   unsigned char       uint8;        /* Unsigned 8   bit value */
+// typedef   signed long long    int64         /* Signed 64 bit value */ 
+// typedef   signed long int     int32;        /* Signed 32 bit value */ 
+// typedef   signed short        int16;        /* Signed 16 bit value */ 
+// typedef   signed char         int8;         /* Signed 8   bit value */ 
 #endif
 

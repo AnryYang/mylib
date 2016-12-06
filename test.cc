@@ -40,9 +40,19 @@ using namespace std;
 // #endif
 
 int main(){
-    DBG_LOG("%s", "1234567");
-    TRACE_LOG("%s", "1234567");
-    ERR_LOG("%s", "1234567");
+    DBG_LOG(LOG_LEVEL_TRACE, "%s", "1");
+    DBG_LOG(LOG_LEVEL_DEBUG, "%s", "2");
+    DBG_LOG(LOG_LEVEL_ERROR, "%s", "3");
+
+    TRACE_LOG(LOG_LEVEL_TRACE, "%s", "1");
+    TRACE_LOG(LOG_LEVEL_DEBUG, "%s", "2");
+    TRACE_LOG(LOG_LEVEL_ERROR, "%s", "3");
+
+    ERR_LOG(LOG_LEVEL_TRACE, "%s", "1");
+    ERR_LOG(LOG_LEVEL_DEBUG, "%s", "2");
+    ERR_LOG(LOG_LEVEL_ERROR, "%s", "3");
+
+
 
     int x = 100;
     cout<<VAR_NAME_STR(x)<<endl;
