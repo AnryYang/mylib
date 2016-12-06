@@ -43,5 +43,11 @@ int main(){
     DBG_LOG("%s", "1234567");
     TRACE_LOG("%s", "1234567");
     ERR_LOG("%s", "1234567");
+
+    int x = 100;
+    cout<<VAR_NAME_STR(x)<<endl;
+
+    cout<<DATE_STR<<endl;
+    cout<<TIME_STR<<endl;
     return 0;
 }
