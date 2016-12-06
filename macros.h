@@ -43,9 +43,9 @@
 
 //log
 // put the following line in your code, if you wanna log sth.
-// #define NEED_LOG
+#define LOG_ON
 
-#ifdef NEED_LOG
+#ifdef LOG_ON
 #define LOG(format, ...) do {                                                        \
             fprintf(stderr, "[%s %s][%s:%d %s]" format,                             \
             __TIME__,__DATE__,                                                       \
@@ -59,9 +59,9 @@
 #endif
 
 //put the following lines in your code if you wanna use these log func
-// #define LOG_LEVEL_DEBUG
-// #define LOG_LEVEL_TRACE
-// #define LOG_LEVEL_ERROR
+#define LOG_LEVEL_DEBUG
+#define LOG_LEVEL_TRACE
+#define LOG_LEVEL_ERROR
 
 #ifdef LOG_LEVEL_DEBUG
     #define DBG_LOG(format, ...) LOG("<DEBUG>:" format, __VA_ARGS__)
