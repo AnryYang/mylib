@@ -86,7 +86,8 @@ void BigFileLoader::free(){
             handle_error("munmap");
         }
     }
-    if(m_fd>0) close(m_fd);
+    if(m_fd>0)
+        close(m_fd);
     m_file_ptr = NULL;
     m_length = 0;
     m_line_num = 0;
